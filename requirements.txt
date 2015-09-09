@@ -1,3 +1,4 @@
 will
+beautifulsoup4
 hiredis==0.1.4
 redis==2.10.3
