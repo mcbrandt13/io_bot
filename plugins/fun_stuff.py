@@ -44,13 +44,11 @@ class fun(WillPlugin):
 
   @respond_to("^win")
   def win(self, message):
-    #self.reply(message, "http://ntds-qc01.plosjournals.org/images/home/win.jpg")
-    self.reply(message, "http://127.0.0.1:5000/static/win.jpg")
+    self.reply(message, "http://ntds-qc01.plosjournals.org/images/home/win.jpg")
 
   @respond_to("^ava")
   def ava(self, message):
-    #self.reply(message, "http://one-qc01.plosjournals.org/images/home/ava.jpg")
-    self.reply(message, "http://127.0.0.1:5000/static/ava.jpg")
+    self.reply(message, "http://one-qc01.plosjournals.org/images/home/ava.jpg")
 
   @respond_to("funny")
   def wasntthatfunny(self, message):
