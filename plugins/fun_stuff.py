@@ -24,7 +24,7 @@ class fun(WillPlugin):
   @respond_to("^confucius")
   def confucius_say(self, message):
     """confucius: A thought for you."""
-    thoughts = [
+    thoughts = ['Be not ashamed of mistakes and thus make them crimes.', 'Forget injuries, never forget kindnesses.',
     'He who will not economize will have to agonize.', 'Our greatest glory is not in never falling, but in getting up every time we do.',
     'They must often change who would be constant in happiness or wisdom.', 'To go beyond is as wrong as to fall short.',
     'The people may be made to follow a path of action, but they may not be made to understand it.', 'The superior man is modest in his speech, but exceeds in his actions.',
@@ -45,15 +45,15 @@ class fun(WillPlugin):
 
   @respond_to("^win")
   def win(self, message):
-    self.reply(message, "http://aa.plos.org/static/images/win.jpg")
+    self.reply(message, "http://ntds-qc01.plosjournals.org/images/home/win.jpg")
 
   @respond_to("^ooh")
   def ooh(self, message):
-    self.say('http://aa.plos.org/static/images/ooh.jpg')
+    self.say('http://ntds-qc01.plosjournals.org/images/home/ooh.jpg')
 
   @respond_to("^ava")
   def ava(self, message):
-    self.reply(message, "http://aa.plos.org/static/images/ava.jpg")
+    self.reply(message, "http://one-qc01.plosjournals.org/images/home/ava.jpg")
 
   @respond_to("funny")
   def wasntthatfunny(self, message):
