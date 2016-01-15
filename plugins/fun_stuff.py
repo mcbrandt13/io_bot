@@ -1,5 +1,6 @@
 __author__ = 'kbrandt'
 
+from bs4 import BeautifulSoup
 from will.plugin import WillPlugin
 from will.decorators import respond_to, periodic, hear, randomly, route, rendered_template, require_settings
 import random
@@ -23,7 +24,7 @@ class fun(WillPlugin):
   @respond_to("^confucius")
   def confucius_say(self, message):
     """confucius: A thought for you."""
-    thoughts = ['Be not ashamed of mistakes and thus make them crimes.', 'Forget injuries, never forget kindnesses.',
+    thoughts = [
     'He who will not economize will have to agonize.', 'Our greatest glory is not in never falling, but in getting up every time we do.',
     'They must often change who would be constant in happiness or wisdom.', 'To go beyond is as wrong as to fall short.',
     'The people may be made to follow a path of action, but they may not be made to understand it.', 'The superior man is modest in his speech, but exceeds in his actions.',
@@ -44,16 +45,24 @@ class fun(WillPlugin):
 
   @respond_to("^win")
   def win(self, message):
-    self.reply(message, "http://ntds-qc01.plosjournals.org/images/home/win.jpg")
+    self.reply(message, "http://aa.plos.org/static/images/win.jpg")
+
+  @respond_to("^ooh")
+  def ooh(self, message):
+    self.say('http://aa.plos.org/static/images/ooh.jpg')
 
   @respond_to("^ava")
   def ava(self, message):
-    self.reply(message, "http://one-qc01.plosjournals.org/images/home/ava.jpg")
+    self.reply(message, "http://aa.plos.org/static/images/ava.jpg")
 
   @respond_to("funny")
   def wasntthatfunny(self, message):
-    options = ['No.', 'I hate you.', 'Yes.', 'Meh.', 'Only if Joseph said it.', 'Kinda...', 'Whatevs.']
-    self.reply(message, random.choice(options))
+    mes = unicode(message)
+    xml = BeautifulSoup(mes, 'lxml')
+    words = xml.message.text
+    if 'image me' not in words:
+      options = ['No.', 'I hate you.', 'Yes.', 'Meh.', 'Only if Joseph said it.', 'Kinda...', 'Whatevs.']
+      self.reply(message, random.choice(options))
 
   @respond_to("love")
   def love(self, message):
