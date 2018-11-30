@@ -55,6 +55,14 @@ class fun(WillPlugin):
   def nosir(self, message):
     self.say('http://s2.quickmeme.com/img/66/668f2c316d8211506929d9c3d3a2a2f3d65f130d512411d186520e34d559dce7.jpg', message=message)
 
+  @hear('^random quote')
+  def random_quote(self, message):
+    """Get a random quote"""
+    r = requests.get('http://kpbrandt.com/api/quotes/random')
+    x = '"{0}" - {1}'.format(r.json().get('phrase'), r.json().get('author'))
+    self.say(x, message=message)
+
+
 
   @respond_to("funny")
   def wasntthatfunny(self, message):
