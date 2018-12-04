@@ -88,12 +88,12 @@ HTTPSERVER_PORT = "9000"
 # ------------------------------------------------------------------------------------
 
 # The list of rooms will should join.  Default is all rooms.
-ROOMS = ['I/O', 'Journal Production', 'Falafel Fridays', 'NO ADULTS ALLOWED', 'Dominionion', 'Giggle Group',]
+ROOMS = ['GEP', 'Workflow', 'python', 'Dev and Tech', 'Wombat', 'Journal Production', 'Falafel Fridays', 'NO ADULTS ALLOWED', 'Animal Sanctuary','HOTS', 'Platform', 'Platypus', 'Aperta Support',]
 
 
 # The room will will talk to if the trigger is a webhook and he isn't told a specific room.
 # Default is the first of ROOMS.
-DEFAULT_ROOM = 'I/O'
+DEFAULT_ROOM = 'Workflow'
 
 
 # Fully-qualified folders to look for templates in, beyond the two that

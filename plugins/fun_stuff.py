@@ -66,7 +66,7 @@ class fun(WillPlugin):
 
   @respond_to("funny")
   def wasntthatfunny(self, message):
-    mes = unicode(message)
+    mes = str(message)
     xml = BeautifulSoup(mes, 'lxml')
     words = xml.message.text
     if 'image me' not in words:
@@ -166,7 +166,7 @@ class fun(WillPlugin):
       r_data = r.json()
       response = 'Location: {0}\nConditions: {1}\nTemp: {2}\nForecast:\n'.format(r_data.get('Location'),
         r_data.get('Conditions'), r_data.get('Temperature'))
-      for day, info in r_data.get('Forecast', {}).items():
+      for day, info in list(r_data.get('Forecast', {}).items()):
         response+= '{0}\n'.format(': '.join([day, info]))
     except:
       response = 'you spell that right?'
