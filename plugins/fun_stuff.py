@@ -33,19 +33,19 @@ class fun(WillPlugin):
 
   @respond_to("^U WOT M8")
   def u_wot_m8(self, message):
-    self.say('http://aa-dev.plos.org/static/articleadmin/images/iobot/uwotm8.png', message=message)
+    self.say('http://kpbrandt.com/static/kpbrandt/images/uwotm8.png', message=message)
 
   @respond_to("^win")
   def win(self, message):
-    self.reply(message, "http://aa-dev.plos.org/static/articleadmin/images/iobot/win.jpg")
+    self.reply(message, "http://kpbrandt.com/static/kpbrandt/images/win.jpg")
 
   @respond_to("^ooh")
   def ooh(self, message):
-    self.say('http://aa-dev.plos.org/static/articleadmin/images/iobot/ooh.jpg', message=message)
+    self.say('http://kpbrandt.com/static/kpbrandt/images/ooh.jpg', message=message)
 
   @respond_to("^hmm")
   def hmm(self, message):
-    self.say('http://aa-dev.plos.org/static/articleadmin/images/iobot/hmm.png', message=message)
+    self.say('http://kpbrandt.com/static/kpbrandt/images/hmm.png', message=message)
 
   @hear('^button')
   def button(self, message):
