@@ -62,6 +62,14 @@ class fun(WillPlugin):
     x = '"{0}" - {1}'.format(r.json().get('phrase'), r.json().get('author'))
     self.say(x, message=message)
 
+  @respond_to('^reverse (?P<phrase>.*)$')
+  def reversed(self, message, phrase):
+    """Reverse a string"""
+    r = requests.get('http://kpbrandt.com/api/reversed', params={'string': phrase})
+    rstring = r.json().get('msg')
+    self.say(rstring, message=message)
+
+
 
 
   @respond_to("funny")
