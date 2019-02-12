@@ -218,12 +218,13 @@ class fun(WillPlugin):
 
       Response =  ''
       for vendor in vendors:
-        Response += "{0}: {1}\n{2}\n{3}\n\n".format(vendor.get('name'),
-                                                  vendor.get('type'),
-                                                  vendor.get('url'),
-                                                  url)
+        Response += "*{0}*: {1}\n\n".format(vendor.get('name'),
+                                                  vendor.get('type'))
     except Exception as e:
-      Response = "I had some trouble getting the data from offthegrid: {0}".format(e)
+      Response = "I had some trouble getting the data from offthegrid, their website" \
+                 "might be taking too long to load. Maybe this can tell you something: {0}".format(e)
+
+    Response += "\n{0}".format(url)
 
     self.say(Response, message=message)
 
