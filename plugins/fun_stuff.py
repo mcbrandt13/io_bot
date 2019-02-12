@@ -218,7 +218,7 @@ class fun(WillPlugin):
 
     Response =  ''
     for vendor in vendors:
-      Response += "{0}: {1}\n{2}\n\n{3}".format(vendor.get('name'),
+      Response += "{0}: {1}\n{2}\n{3}\n\n".format(vendor.get('name'),
                                                 vendor.get('type'),
                                                 vendor.get('url'),
                                                 url)
