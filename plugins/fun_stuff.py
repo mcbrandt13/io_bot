@@ -199,7 +199,7 @@ class fun(WillPlugin):
     options = webdriver.FirefoxOptions()
     options.headless = True
     driver = webdriver.Firefox(options=options)
-    driver.implicitly_wait(30)
+    driver.implicitly_wait(45)
     url = 'https://offthegrid.com/event/vallejo-front/{0}-11am'.format(the_date)
     driver.get(url)
     soup = BeautifulSoup(driver.page_source, 'lxml')
@@ -222,7 +222,7 @@ class fun(WillPlugin):
                                                   vendor.get('type'))
     except Exception as e:
       Response = "I had some trouble getting the data from offthegrid, their website" \
-                 "might be taking too long to load. Maybe this can tell you something: {0}".format(e)
+                 " might be taking too long to load. Maybe this can tell you something: {0}".format(e)
 
     Response += "\n{0}".format(url)
 
