@@ -1,11 +1,15 @@
 __author__ = 'kbrandt'
 
 from bs4 import BeautifulSoup
+from selenium import webdriver
 from will.plugin import WillPlugin
 from will.decorators import respond_to, hear
+import datetime
+import re
 import requests
 import random
 import subprocess
+
 
 class fun(WillPlugin):
 
@@ -185,5 +189,41 @@ class fun(WillPlugin):
     """Generate some corporate bs."""
     r = requests.get('http://kpbrandt.com/api/bs')
     self.say(r.json().get('msg'), message=message)
+
+
+  @respond_to("^lunch")
+  def food_trucks(self, message):
+    """Scrape offthegrid.com website to get food trucks for today."""
+    self.say('Hold on a sec, checking the offthegrid...', message=message)
+    the_date = datetime.datetime.today().strftime('%Y-%-m-%-d')
+    options = webdriver.FirefoxOptions()
+    options.headless = True
+    driver = webdriver.Firefox(options=options)
+    driver.implicitly_wait(30)
+    url = 'https://offthegrid.com/event/vallejo-front/{0}-11am'.format(the_date)
+    driver.get(url)
+    soup = BeautifulSoup(driver.page_source, 'lxml')
+    driver.quit()
+
+    ul = soup.find('ul', attrs={'class': 'vendors-grid'})
+    vendors = []
+    for li in ul.find_all('li'):
+      name = li.find('header').find('h3').text
+      type = li.find('section', attrs={'class': 'food-cat'}).find('span').text
+      d = li.find('div', attrs={'class': 'logo-img'}).attrs
+      raw = d['style']
+      r = re.search('\".+\"', raw)
+      img_url = r.group(0).replace('"', '')
+      vendors.append({'name': name, 'type': type, 'url': img_url})
+
+    Response =  ''
+    for vendor in vendors:
+      Response += "{0}: {1}\n{2}\n\n{3}".format(vendor.get('name'),
+                                                vendor.get('type'),
+                                                vendor.get('url'),
+                                                url)
+
+    self.say(Response, message=message)
+
 
 
