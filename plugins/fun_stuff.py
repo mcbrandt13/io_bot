@@ -204,24 +204,26 @@ class fun(WillPlugin):
     driver.get(url)
     soup = BeautifulSoup(driver.page_source, 'lxml')
     driver.quit()
+    try:
+      ul = soup.find('ul', attrs={'class': 'vendors-grid'})
+      vendors = []
+      for li in ul.find_all('li'):
+        name = li.find('header').find('h3').text
+        type = li.find('section', attrs={'class': 'food-cat'}).find('span').text
+        d = li.find('div', attrs={'class': 'logo-img'}).attrs
+        raw = d['style']
+        r = re.search('\".+\"', raw)
+        img_url = r.group(0).replace('"', '')
+        vendors.append({'name': name, 'type': type, 'url': img_url})
 
-    ul = soup.find('ul', attrs={'class': 'vendors-grid'})
-    vendors = []
-    for li in ul.find_all('li'):
-      name = li.find('header').find('h3').text
-      type = li.find('section', attrs={'class': 'food-cat'}).find('span').text
-      d = li.find('div', attrs={'class': 'logo-img'}).attrs
-      raw = d['style']
-      r = re.search('\".+\"', raw)
-      img_url = r.group(0).replace('"', '')
-      vendors.append({'name': name, 'type': type, 'url': img_url})
-
-    Response =  ''
-    for vendor in vendors:
-      Response += "{0}: {1}\n{2}\n{3}\n\n".format(vendor.get('name'),
-                                                vendor.get('type'),
-                                                vendor.get('url'),
-                                                url)
+      Response =  ''
+      for vendor in vendors:
+        Response += "{0}: {1}\n{2}\n{3}\n\n".format(vendor.get('name'),
+                                                  vendor.get('type'),
+                                                  vendor.get('url'),
+                                                  url)
+    except Exception as e:
+      Response = "I had some trouble getting the data from offthegrid: {0}".format(e)
 
     self.say(Response, message=message)
 
