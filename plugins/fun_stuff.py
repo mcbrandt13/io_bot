@@ -191,15 +191,14 @@ class fun(WillPlugin):
     self.say(r.json().get('msg'), message=message)
 
 
-  @respond_to("^lunch (?P<the_date>.*)$")
+  @respond_to("^lunch(?P<the_date>.*)$")
   def food_trucks(self, message, the_date):
     """Scrape offthegrid.com website to get food trucks for today."""
     if not the_date:
       d = datetime.datetime.today()
-      the_date = d.strftime('%Y-%-m-%-d')
     else:
-      d = datetime.datetime.strptime(the_date, '%Y-%m-%d')
-
+      d = datetime.datetime.strptime(the_date.strip(), '%Y-%m-%d')
+    the_date = d.strftime('%Y-%-m-%-d')    
     if d.weekday() in [0, 2, 4]:
       self.say('Hold on a sec, checking the offthegrid...', message=message)
       options = webdriver.FirefoxOptions()
