@@ -194,48 +194,6 @@ class fun(WillPlugin):
   def shut_it_down(self, message):
     self.say('https://imgur.com/Y4GCgDu', message=message)
 
-  @respond_to("^lunch(?P<the_date>.*)$")
-  def food_trucks(self, message, the_date):
-    """lunch: Scrape offthegrid.com website to get food trucks for today."""
-    self.say('...sorry. nope.', message=message)
-    if not the_date:
-      d = datetime.datetime.today()
-    else:
-      d = datetime.datetime.strptime(the_date.strip(), '%Y-%m-%d')
-    the_date = d.strftime('%Y-%-m-%-d')    
-    if d.weekday() in [0, 2, 4]:
-      #self.say('Hold on a sec, checking the offthegrid...', message=message)
-      #options = webdriver.FirefoxOptions()
-      #options.headless = True
-      #driver = webdriver.Firefox(options=options)
-      #driver.implicitly_wait(45)
-      #url = 'https://offthegrid.com/event/vallejo-front/{0}-11am'.format(the_date)
-      #driver.get(url)
-      #soup = BeautifulSoup(driver.page_source, 'lxml')
-      #driver.quit()
-      pass
-      #try:
-      #  ul = soup.find('ul', attrs={'class': 'vendors-grid'})
-      #  vendors = []
-      #  for li in ul.find_all('li'):
-      #    name = li.find('header').find('h3').text
-      #    type = li.find('section', attrs={'class': 'food-cat'}).find('span').text
-      #    d = li.find('div', attrs={'class': 'logo-img'}).attrs
-      #    raw = d['style']
-      #    r = re.search('\".+\"', raw)
-      #    img_url = r.group(0).replace('"', '')
-      #    vendors.append({'name': name, 'type': type, 'url': img_url})
-
-      #  Response =  ''
-      #  for vendor in vendors:
-      #    Response += "*{0}*: {1}\n\n".format(vendor.get('name'),
-      #                                              vendor.get('type'))
-      #except Exception as e:
-      #  Response = "I had some trouble getting the data from offthegrid, their website" \
-      #             " might be taking too long to load. Maybe this can tell you something: {0}".format(e)
-
-     # Response += "\n{0}".format(url)
-    #else:
-     # Response = "No trucks for you! Only Mon, Weds, Fri."
-
-    #self.say(Response, message=message)
+  @respond_to("^haha yes")
+  def haha_yes(self, message):
+    self.say('http://kpbrandt.com/static/kpbrandt/images/sickos.jpg', message=message)
